@@ -612,7 +612,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
 .gfx-media { display: block; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; background: var(--gray-100); }
 .gfx-media[data-full] { cursor: zoom-in; }
 .gfx-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
-.gfx-media[data-full]:hover img { transform: scale(1.03); }
+.gfx-media:hover img { transform: scale(1.03); }
 .gfx-media .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--gray-400); background: repeating-linear-gradient(135deg, var(--gray-50), var(--gray-50) 10px, var(--gray-100) 10px, var(--gray-100) 20px); }
 .gfx-item figcaption { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; }
 .gfx-title { font-size: 15px; }
