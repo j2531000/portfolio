@@ -579,6 +579,14 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
   .pd-impact-grid { grid-template-columns: repeat(2, 1fr); }
   .pd-process-item { grid-template-columns: 1fr; gap: 6px; }
   .module-grid, .pd-feature-list { grid-template-columns: 1fr; }
+  .proj-list { gap: 0; }
+  .proj-row, .proj-grid-row { gap: 16px; padding: 40px 0; border-bottom: 1px solid var(--gray-200); }
+  .proj-list > :first-child { padding-top: 0; }
+  .proj-list > :last-child { border-bottom: 0; padding-bottom: 0; }
+  .proj-copy { gap: 6px; }
+  .proj-copy .h3 { margin: 0; }
+  .proj-copy p { margin: 0; }
+  .proj-copy .tag-row { margin: 6px 0; }
   .journey-item { flex-direction: column; gap: 4px; }
   .journey-item .period { flex: none; }
   .floating-card { position: relative; bottom: auto; left: auto; margin-top: -40px; margin-left: 16px; width: fit-content; }
