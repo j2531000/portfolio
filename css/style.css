@@ -150,7 +150,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
   grid-template-columns: 1fr 1fr;
   gap: 56px;
   align-items: center;
-  padding: 72px 0 40px;
+  padding: 72px 24px 40px;
 }
 
 .hero-copy { display: flex; flex-direction: column; gap: 32px; }
@@ -572,18 +572,18 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
   .proj-grid-row, .pd-two-col, .pd-before-after, .lang-loc-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .hero-grid { padding: 40px 0 32px; gap: 40px; }
+  .hero-grid { padding: 40px 24px 32px; gap: 40px; }
   .hero-media-wrap { margin: 0 auto; }
   .proj-row.reverse .proj-media, .proj-row.reverse .proj-copy { order: initial; }
   .stats-grid, .overview-stats, .principles-grid, .skills-cols { grid-template-columns: repeat(2, 1fr); }
   .pd-impact-grid { grid-template-columns: repeat(2, 1fr); }
   .pd-process-item { grid-template-columns: 1fr; gap: 6px; }
   .module-grid, .pd-feature-list { grid-template-columns: 1fr; }
-  .floating-card { position: static; margin-top: -40px; margin-left: 16px; width: fit-content; }
+  .floating-card { position: relative; bottom: auto; left: auto; margin-top: -40px; margin-left: 16px; width: fit-content; }
 }
 
 @media (max-width: 640px) {
-  .hero-grid { padding: 24px 0 28px; gap: 32px; }
+  .hero-grid { padding: 24px 24px 28px; gap: 32px; }
   .section-tight { padding: 40px 0; }
   .hero-copy-inner .eyebrow { line-height: 1.5; }
   .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
