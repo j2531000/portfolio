@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Projects — Yi Chen Cheng</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Yi Chen Cheng</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <i data-lucide="menu" class="icon-menu"></i>
+      <i data-lucide="x" class="icon-close"></i>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <div class="wrap">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section-tight">
+    <div class="wrap">
+      <p class="eyebrow">Selected Work</p>
+      <h1 class="h1" style="font-size:clamp(36px,6vw,64px);">Case Studies</h1>
+      <p class="lede" style="margin-top:16px; max-width:680px;">
+        Nine projects spanning AI product design, growth, branding, and a
+        0-to-1 startup — from eight years designing Kolr AI's influencer
+        marketing platform to co-founding an international social app.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:8px;">iKala — Kolr AI · 2018–Present</p>
+      <div class="proj-list" id="kolrProjects"></div>
+    </div>
+  </section>
+
+  <section class="bg-gray" style="padding-top:56px; padding-bottom:56px;">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:8px;">Earlier Chapter · Separate Company</p>
+      <h2 class="h3" style="margin-bottom:8px;">Before Kolr AI — Co-Founder, Tripleasure Technology</h2>
+      <p class="lede" style="max-width:640px; margin-bottom:32px;">
+        FRNCi was a separate startup I co-founded in 2015, before joining
+        iKala — not a Kolr AI project.
+      </p>
+      <div class="proj-list" id="otherProjects"></div>
+    </div>
+  </section>
+
+  <section id="graphic" class="bg-gfx">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:8px;">Visual & Graphic Design</p>
+      <h2 class="h3" style="margin-bottom:8px;">Selected graphic work</h2>
+      <p class="lede" style="max-width:640px; margin-bottom:32px;">
+        Beyond product design, a selection of brand, print, and campaign visuals.
+      </p>
+      <div class="gfx-grid" id="graphicWall"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="year"></span> Yi Chen Cheng. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yi-chen-cheng-b1379688/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a href="mailto:j2531000@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function renderProjectRow(p, i) {
+    const reverse = i % 2 === 1 ? " reverse" : "";
+    const impactHtml = p.impact.length
+      ? `<div class="impact-mini">${p.impact
+          .slice(0, 2)
+          .map((it) => `<div><div class="iv">${it.value}</div><div class="im">${it.metric}</div></div>`)
+          .join("")}</div>`
+      : `<div class="todo-note">TODO: add quantified impact for this project</div>`;
+    return `<a href="project.html?id=${p.id}" class="proj-row proj-grid-row${reverse}" style="color:inherit;">
+        <div class="proj-media">${p.image ? `<img src="${p.image}" alt="${p.title}">` : `<div class="ph">Add screenshot<br>${p.title}</div>`}</div>
+        <div class="proj-copy">
+          <p class="proj-meta">${p.company} · ${p.category} · ${p.year}</p>
+          <h2 class="h3">${p.title}</h2>
+          <p class="proj-desc">${p.description}</p>
+          <div class="tag-row">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+          ${impactHtml}
+          <span class="link-arrow">View Case Study Details <i data-lucide="arrow-right"></i></span>
+        </div>
+      </a>`;
+  }
+
+  const kolrEl = document.getElementById("kolrProjects");
+  const otherEl = document.getElementById("otherProjects");
+  const kolrProjects = PROJECTS.filter((p) => p.company.includes("iKala"));
+  const otherProjects = PROJECTS.filter((p) => !p.company.includes("iKala"));
+
+  const gfxEl = document.getElementById("graphicWall");
+  GRAPHICS.forEach((g) => {
+    gfxEl.insertAdjacentHTML("beforeend",
+      `<figure class="gfx-item"><div class="gfx-media" ${g.image ? `data-full="${g.image}"` : ""}>${g.image ? `<img src="${g.image}" alt="${g.title}">` : `<div class="ph">Add image</div>`}</div><figcaption><span class="gfx-title">${g.title}</span><span class="gfx-meta">${g.type} · ${g.year}</span>${g.desc ? `<span class="gfx-desc">${g.desc}</span>` : ""}</figcaption></figure>`);
+  });
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.innerHTML = '<img alt="">';
+  document.body.appendChild(lb);
+  lb.addEventListener("click", () => lb.classList.remove("open"));
+  document.querySelectorAll(".gfx-media[data-full]").forEach((m) => {
+    m.addEventListener("click", () => { lb.querySelector("img").src = m.dataset.full; lb.classList.add("open"); });
+  });
+
+  kolrProjects.forEach((p, i) => kolrEl.insertAdjacentHTML("beforeend", renderProjectRow(p, i)));
+  otherProjects.forEach((p, i) => otherEl.insertAdjacentHTML("beforeend", renderProjectRow(p, i)));
+</script>
+</body>
+</html>

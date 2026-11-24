@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">Case Study — Yi Chen Cheng</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Yi Chen Cheng</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <i data-lucide="menu" class="icon-menu"></i>
+      <i data-lucide="x" class="icon-close"></i>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <div class="wrap">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="pdRoot">
+  <!-- Filled by script -->
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>© <span id="year"></span> Yi Chen Cheng. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yi-chen-cheng-b1379688/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a href="mailto:j2531000@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const project = getProjectById(id);
+  const root = document.getElementById("pdRoot");
+
+  if (!project) {
+    root.innerHTML = `
+      <section class="section-tight">
+        <div class="wrap">
+          <p class="eyebrow">Not found</p>
+          <h1 class="h2">Case study not found</h1>
+          <p class="lede">This project doesn't exist yet.</p>
+          <a href="projects.html" class="btn btn-outline" style="margin-top:20px;"><i data-lucide="arrow-left"></i> Back to Projects</a>
+        </div>
+      </section>`;
+  } else {
+    document.getElementById("pageTitle").textContent = project.title + " — Yi Chen Cheng";
+
+    const impactHtml = project.impact.length
+      ? `<div class="pd-impact-grid">${project.impact
+          .map((it) => `<div class="card"><div class="iv">${it.value}</div><div class="im">${it.metric}</div></div>`)
+          .join("")}</div>`
+      : `<div class="todo-note">TODO: add quantified impact metrics for this project</div>`;
+
+    const challengeHtml = project.challenge
+      ? project.challenge.split("\n\n").map((t) => `<p>${t}</p>`).join("")
+      : `<div class="todo-note">TODO: describe the problem / business challenge</div>`;
+
+    const solutionHtml = project.solution
+      ? project.solution.split("\n\n").map((t) => `<p>${t}</p>`).join("")
+      : `<div class="todo-note">TODO: describe the key design decisions</div>`;
+
+    const processHtml = project.process.length
+      ? `<div class="pd-process">${project.process
+          .map(
+            (ph) =>
+              `<div class="pd-process-item"><div class="phase">${ph.phase}</div><div class="pdesc">${ph.description}</div></div>`
+          )
+          .join("")}</div>`
+      : `<p class="process-link">This project followed my standard design process — <a href="about.html#process">see how I work</a>.</p>`;
+
+    const featuresHtml = project.keyFeatures.length
+      ? (typeof project.keyFeatures[0] === "object"
+          ? `${project.keyFeaturesImage ? `<div class="pd-kf-media pd-kf-shared"><img src="${project.keyFeaturesImage}" alt="${project.title}"></div>` : ""}<div class="pd-kf-grid">${project.keyFeatures.map((f) => `<div class="pd-kf"><h3>${f.title}</h3><p>${f.text}</p></div>`).join("")}</div>`
+          : `<ul class="pd-feature-list">${project.keyFeatures.map((f) => `<li>${f}</li>`).join("")}</ul>`)
+      : "";
+
+    const beforeAfterHtml = project.beforeAfter
+      ? `<div class="pd-before-after">
+          <div class="ba-card ba-before"><h4>Before</h4><p>${project.beforeAfter.before}</p></div>
+          <div class="ba-card ba-after"><h4>After</h4><p>${project.beforeAfter.after}</p></div>
+        </div>`
+      : "";
+
+    const idx = PROJECTS.findIndex((p) => p.id === project.id);
+    const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
+    const next = PROJECTS[(idx + 1) % PROJECTS.length];
+
+    root.innerHTML = `
+      <section class="section-tight pd-hero">
+        <div class="wrap">
+          <a href="projects.html" class="link-arrow" style="margin-bottom:16px; display:inline-flex;"><i data-lucide="arrow-left"></i> All Projects</a>
+          <p class="eyebrow">${project.category}</p>
+          <h1 class="h1" style="font-size:clamp(32px,5.5vw,56px);">${project.title}</h1>
+          <div class="pd-meta-row">
+            <span>${project.company}</span>
+            <span>${project.role}</span>
+            <span>${project.year}</span>
+          </div>
+          <div class="tag-row">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+          <div class="pd-cover">
+            ${project.image ? `<img src="${project.image}" alt="${project.title}">` : `<div class="ph">Add hero screenshot for this case study<br>Suggested: 1600×800px</div>`}
+          </div>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="wrap">
+          <h2 class="h3" style="margin-bottom:20px;">Overview</h2>
+          <p class="lede" style="max-width:760px;">${project.description}</p>
+        </div>
+      </section>
+
+      <section class="section-tight bg-gray">
+        <div class="wrap">
+          <h2 class="h3" style="margin-bottom:24px;">Impact</h2>
+          ${impactHtml}
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="wrap pd-two-col">
+          <div>
+            <h3>Challenge</h3>
+            ${challengeHtml}
+          </div>
+          <div>
+            <h3>Solution</h3>
+            ${solutionHtml}
+          </div>
+        </div>
+      </section>
+
+      ${(project.highlights && project.highlights.length) ? `<section class="section-tight bg-gray"><div class="wrap"><h2 class="h3" style="margin-bottom:40px;">Highlights</h2><div class="pd-highlights">${project.highlights.map((h, i) => `<div class="pd-hl${i % 2 === 1 ? " reverse" : ""}${h.wide ? " wide" : ""}"><div class="pd-hl-copy"><span class="pd-hl-num">0${i + 1}</span><h3 class="h3">${h.title}</h3><p>${h.text}</p></div><div class="pd-hl-media${h.images ? " multi" : ""}${h.video ? " vid" : ""}">${h.video ? `<video src="${h.video}" autoplay muted loop playsinline preload="metadata"></video>` : h.images ?h.images.map((s) => `<img src="${s}" alt="${h.title}">`).join("") : h.image ?`<img src="${h.image}" alt="${h.title}">` : `<div class="ph">Add UI screenshot</div>`}</div></div>`).join("")}</div></div></section>` : ""}
+
+      ${(project.gallery && project.gallery.length) ? `<section class="section-tight"><div class="wrap"><h2 class="h3" style="margin-bottom:24px;">Design Evolution</h2>${project.gallery.map((g) => `<figure class="pd-figure"><img src="${g.src}" alt="${g.caption}"><figcaption>${g.caption}</figcaption></figure>`).join("")}</div></section>` : ""}
+
+      ${featuresHtml ? `<section class="section-tight bg-gray"><div class="wrap"><h2 class="h3" style="margin-bottom:24px;">Key Features</h2>${featuresHtml}</div></section>` : ""}
+
+      ${beforeAfterHtml ? `<section class="section-tight"><div class="wrap"><h2 class="h3" style="margin-bottom:24px;">Before / After</h2>${beforeAfterHtml}</div></section>` : ""}
+
+      <section class="section-tight">
+        <div class="wrap pd-nav">
+          <a href="project.html?id=${prev.id}" class="link-arrow"><i data-lucide="arrow-left"></i> ${prev.title}</a>
+          <a href="project.html?id=${next.id}" class="link-arrow">${next.title} <i data-lucide="arrow-right"></i></a>
+        </div>
+      </section>
+    `;
+    document.querySelectorAll(".pd-hl-media.multi").forEach((box) => {
+      const imgs = [...box.querySelectorAll("img")];
+      if (imgs.length < 2) { imgs.forEach((im) => im.classList.add("on")); return; }
+      const dots = document.createElement("div");
+      dots.className = "pd-hl-dots";
+      dots.innerHTML = imgs.map(() => "<span></span>").join("");
+      box.appendChild(dots);
+      const ds = [...dots.children];
+      let n = 0;
+      const show = (i) => { imgs.forEach((im, k) => im.classList.toggle("on", k === i)); ds.forEach((d, k) => d.classList.toggle("on", k === i)); };
+      show(0);
+      setInterval(() => { n = (n + 1) % imgs.length; show(n); }, 3000);
+    });
+  }
+</script>
+</body>
+</html>
