@@ -160,8 +160,8 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
 
 .hero-media-wrap {
   position: relative;
-  width: 480px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 480px;
   margin-left: auto;
 }
 
@@ -570,8 +570,10 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
 @media (max-width: 900px) {
   .hero-grid, .about-hero-grid, .proj-row, .proj-row.reverse,
   .proj-grid-row, .pd-two-col, .pd-before-after, .lang-loc-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+  .hero-grid { padding: 40px 0 32px; gap: 40px; }
+  .hero-media-wrap { margin: 0 auto; }
   .proj-row.reverse .proj-media, .proj-row.reverse .proj-copy { order: initial; }
   .stats-grid, .overview-stats, .principles-grid, .skills-cols { grid-template-columns: repeat(2, 1fr); }
   .pd-impact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -581,6 +583,11 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
 }
 
 @media (max-width: 640px) {
+  .hero-grid { padding: 24px 0 28px; gap: 32px; }
+  .section-tight { padding: 40px 0; }
+  .hero-copy-inner .eyebrow { line-height: 1.5; }
+  .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .floating-card { margin-top: -32px; padding: 16px 20px; }
   .nav-links { display: none; }
   .nav-toggle { display: block; }
   .stats-grid, .overview-stats, .principles-grid, .skills-cols { grid-template-columns: repeat(1, 1fr); }
