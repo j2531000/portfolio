@@ -321,6 +321,9 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
   object-fit: cover;
 }
 
+.proj-media img { transition: transform .4s ease; }
+.proj-media:hover img { transform: scale(1.03); }
+
 .proj-media .ph {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
