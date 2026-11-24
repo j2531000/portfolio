@@ -579,6 +579,8 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.01em; }
   .pd-impact-grid { grid-template-columns: repeat(2, 1fr); }
   .pd-process-item { grid-template-columns: 1fr; gap: 6px; }
   .module-grid, .pd-feature-list { grid-template-columns: 1fr; }
+  .journey-item { flex-direction: column; gap: 4px; }
+  .journey-item .period { flex: none; }
   .floating-card { position: relative; bottom: auto; left: auto; margin-top: -40px; margin-left: 16px; width: fit-content; }
 }
 
