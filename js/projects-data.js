@@ -1,9 +1,3 @@
-// Content below is sourced from Yi Chen Cheng's résumé, plus feature specifics
-// confirmed against the live product at kolr.ai (she owns the whole product).
-// Fields left empty / marked TODO are NOT verified from either source — replace
-// them with real case-study detail (screenshots, process notes, specific
-// metrics) once available. Do not fill them with invented numbers or claims.
-
 const PROJECTS = [
   {
     id: "ai-search-llm-ux",
@@ -16,8 +10,6 @@ const PROJECTS = [
       "Redesigned the AI-powered influencer search experience — result presentation, query handling states, AI-generated influencer summaries, and LLM response interfaces — alongside the influencer resource library.",
     image: "assets/cover-search.webp",
     tags: ["AI SaaS", "Search UX", "LLM", "B2B"],
-    // DRAFT — written from product features on kolr.ai, customer testimonials
-    // and résumé facts. Review every line against what actually happened.
     challenge:
       "Brand marketers were searching a database of 300M+ influencer profiles. Finding the right creator often felt like looking for a needle in a haystack: results kept surfacing the same familiar faces, and judging whether someone fit a brief meant opening profile after profile. The challenge was to make a huge, filter-heavy search feel guided and trustworthy — including for marketers new to influencer marketing — without hiding the depth that agencies and power users rely on.",
     solution:
@@ -155,7 +147,7 @@ const PROJECTS = [
     challenge:
       "Influencer collaborations usually run through spreadsheets, chat threads, and email. On the brand side, contact details, quotes, and past experiences with a creator live in different places and leave with whoever managed the project. On the creator side, the picture is just as fragmented: each campaign means juggling messages, schedules, and contracts.\n\nDesigning for two audiences at once meant each side had to feel native to its own job while staying in sync with the other.",
     solution:
-      "On the brand side, I designed a campaign workspace where everyone on a project can view and edit each creator's collaboration record in real time: contact information, quotes, notes, evaluations, and collaboration history, so experience with a creator is shared across the team and reusable in future campaigns. Creators can be added by pasting a social profile URL or imported from existing lists, then filtered by attributes and engagement metrics, with configurable display fields. Outreach emails can be sent to many selected creators in one click.\n\nOn the creator side, I designed the experience around two questions: how do I get from a campaign to getting paid with as little back-and-forth as possible? Creators authorize their accounts through each platform's official flow. Both sides create and sign contracts online, connect payment, and talk in a built-in chat room, so a collaboration runs from first message to payout in one place.",
+      "On the brand side, I designed a campaign workspace where everyone on a project can view and edit each creator's collaboration record in real time: contact information, quotes, notes, evaluations, and collaboration history, so experience with a creator is shared across the team and reusable in future campaigns. Creators can be added by pasting a social profile URL or imported from existing lists, then filtered by attributes and engagement metrics, with configurable display fields. Outreach emails can be sent to many selected creators in one click.\n\nOn the creator side, I designed the experience around one question: how does a creator get from a campaign to getting paid with as little back-and-forth as possible? Creators authorize their accounts through each platform's official flow. Both sides create and sign contracts online, connect payment, and talk in a built-in chat room, so a collaboration runs from first message to payout in one place.",
     impact: [
       { value: "15,000+", metric: "Creators using Campaign" },
       { value: "+30%", metric: "Brand-side efficiency" },
@@ -299,7 +291,7 @@ const PROJECTS = [
   {
     id: "chrome-extension",
     title: "Cross-Platform Chrome Extension",
-    category: "0→1 Feature",
+    category: "Growth Feature",
     company: "iKala — Kolr AI",
     year: "2022 – Present",
     role: "Senior Product Designer",
@@ -372,9 +364,6 @@ function mediaPlaceholder(label) {
   return `<div class="ph">Add screenshot<br>${label}</div>`;
 }
 
-// Graphic design image wall (Projects page). PLACEHOLDER DATA — replace each
-// item's title / type / year / image with your real work. Set image to a path
-// like "assets/graphic-01.jpg"; leave "" to show a placeholder frame.
 const GRAPHICS = [
   { title: "Soft Cookie Brand One-Page Marketing Site", type: "Brand & web design", year: "2023", image: "assets/gfx-oatday.webp" },
   { title: "Kolr Brand in Use", type: "Brand applications", year: "2024 – 2026", desc: "One brand identity extended across presentations, event key visuals, ads, and social assets, so every medium still feels like the same brand.", image: "assets/gfx-kolr-brand-v3.webp" },
